@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone Report: Anthropogenic Pressures and Decadal Dynamics (2016-2026) in Lakaki Lake</title>
+    <style>
+        :root {
+            --primary-navy: #0f172a;
+            --emerald-green: #047857;
+            --accent-teal: #0d9488;
+            --text-body: #334155;
+            --bg-canvas: #f1f5f9;
+            --bg-card: #ffffff;
+            --border-light: #e2e8f0;
+            --badge-loss: #be123c;
+            --badge-gain: #15803d;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-body);
+            background-color: var(--bg-canvas);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .report-page {
+            background: var(--bg-card);
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm 20mm 20mm 20mm;
+            margin: 30px auto;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-sizing: border-box;
+            position: relative;
+            border: 1px solid var(--border-light);
+        }
+
+        .running-header {
+            position: absolute;
+            top: 10mm;
+            left: 20mm;
+            right: 20mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #64748b;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .running-footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 20mm;
+            right: 20mm;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            border-top: 1px solid var(--border-light);
+            padding-top: 6px;
+        }
+
+        /* Cover Page Styling */
+        .cover-title {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 60px;
+        }
+
+        .cover-title h1 {
+            font-size: 2rem;
+            color: var(--primary-navy);
+            line-height: 1.3;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .cover-title p {
+            font-size: 1.05rem;
+            color: #475569;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        .metadata-section {
+            margin: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .meta-group {
+            border-left: 3px solid var(--emerald-green);
+            padding-left: 12px;
+        }
+
+        .meta-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .meta-group span {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        /* Typography */
+        h2 {
+            color: var(--primary-navy);
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            border-left: 4px solid var(--accent-teal);
+            padding-left: 10px;
+        }
+
+        h3 {
+            color: var(--emerald-green);
+            font-size: 1.1rem;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            text-align: justify;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        /* Tables & Structural Layouts */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--border-light);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--primary-navy);
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+
+        .shift-loss { color: var(--badge-loss); font-weight: 700; }
+        .shift-gain { color: var(--badge-gain); font-weight: 700; }
+
+        /* Vector Spatial / Matrix Placeholders */
+        .vector-canvas-placeholder {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vector-canvas-placeholder svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .toc-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted #cbd5e1;
+            margin: 0 8px;
+            position: relative;
+            top: -4px;
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .report-page { margin: 0; box-shadow: none; border: none; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER PAGE -->
+    <div class="report-page">
+        <div class="running-header">
+            <span>BVIEER Capstone Research Repository</span>
+            <span>Course: Field Techniques</span>
+        </div>
+        
+        <div class="cover-title">
+            <h1>EVALUATING ANTHROPOGENIC PRESSURES AND DECADAL DYNAMICS (2016-2026) IN URBAN WETLANDS:<br>A CASE STUDY OF LAKAKI LAKE, MODEL COLONY, PUNE</h1>
+            <p>A Capstone Project Report Submitted in Partial Fulfilment of the Requirements for the Course of Field Techniques in First Year M.Sc. Geoinformatics</p>
+        </div>
+
+        <div class="metadata-section">
+            <div class="meta-group">
+                <label>Submitted By</label>
+                <span>Anusha Layek, Amisha Sahay, Vansh Naik, Sanket Shejwal</span>
+            </div>
+            <div class="meta-group">
+                <label>Roll Numbers / PRN</label>
+                <span>2614, 2618, 2619, 2613</span>
+            </div>
+            <div class="meta-group">
+                <label>Course & Batch</label>
+                <span>M.Sc. Geoinformatics (Batch 2025–2027)</span>
+            </div>
+            <div class="meta-group">
+                <label>Supervisors / Instructors</label>
+                <span>Ms. Lakshita Bhati / Dr. Aravinth</span>
+            </div>
+            <div class="meta-group" style="grid-column: span 2;">
+                <label>Department & Institute</label>
+                <span>Bharati Vidyapeeth Institute of Environment Education and Research (BVIEER), Pune</span>
+            </div>
+            <div class="meta-group">
+                <label>Submission Date</label>
+                <span>October 15, 2026</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3 style="text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">Abstract</h3>
+            <p><strong>This capstone project provides a comprehensive overview and diagnostic assessment of Lakaki Lake</strong>, located in Model Colony, Shivaji Nagar, Pune. Operating as an urban quarry lake surrounded by intense residential and commercial infrastructure, Lakaki Lake is subjected to heavy anthropogenic pressures that compromise its water quality, ecological health, and aquatic biodiversity. The main objective of this study is to evaluate the spatial and multi-decadal changes occurring in the lake between 2016, 2021, and 2026, specifically focusing on the anthropogenic pressure around the area and how it’s affecting the organisms and the natural habitat.</p>
+            <p>The project integrates primary field data collection using Epicollect5 mobile GIS, photographic logging of affected flora and fauna, and multi-spectral satellite remote sensing processing. Using ArcGIS and QGIS platforms, multi-spectral indices—including the Normalized Difference Built-Up Index (NDBI), Normalized Difference Red Edge Index (NDRE), Normalized Difference Vegetation Index (NDVI), and Normalized Difference Water Index (NDWI)—were generated across a 10-year timeline (2016, 2021, 2026). Decadal comparative analysis reveals a progressive contraction of open water surface area alongside a rapid expansion of invasive macrophytes...</p>
+        </div>
+
+        <div class="running-footer">i | Page</div>
+    </div>
+
+    <!-- PAGE 2: ABSTRACT CONTINUED & TOC -->
+    <div class="report-page">
+        <div class="running-header">
+            <span>Lakaki Lake Decadal Dynamics (2016-2026)</span>
+            <span>Technical Report Overview</span>
+        </div>
+Section 2: Research Questions4
+2.1 Core Research Questions (RQs)4
+2.2 Project Objectives4
+Section 3: Methodology & Technical Workflow5
+3.1 Mobile GIS Field Survey & Biological Data Collection5
+3.2 Multi-Spectral Satellite Image Processing5
+3.3 ArcGIS Data Visualization & Zonal Statistics6
+Section 4: Results, Diagnostic Maps & Multi-Decadal Analysis8
+4.1 Multi-Spectral Index Maps (NDBI, NDRE, NDVI, NDWI)8
+4.2 Decadal Comparison & Surface Area Dynamics9
+Section 5: PMC Actionable Development & SDG 6 Plan12
+Section 6: Challenges, Operational Constraints & Difficulties15
+Section 7: Future Scope & Strategic Recommendations16
+References17
+
+ii
+Section 1: About the study area
+Section 1: About the study area
+Study Area Map: Lakaki Lake
+Model Colony, Shivajinagar, Pune, Maharashtra.
+
+
+Legend:  Lakaki Lake
+
+
+Figure 1: The above map shows the study area which is Lakaki Lake, situated in the Model Colony of Shivajinagar, Pune, Maharashtra, India.
+1.1 History and its dimensions
+
+kirloskar
+Industries
+Lakaki lake is Located in Pune’s Model Colony and was developed by the Kirloskar family, the founding directors of Kirloskar Industries, with its name coming from that of the company’s founder, Laxman Kashinath Kirloskar—an abandoned open basalt rock quarry that not only accumulates water through annual rainfall but also has natural freshwater springs. It is believed that stones from the quarry were used to build Fergusson College, located in the same area.
+The long drawn legal fight to not demolish the quarry, or the lake, In 1985, the Pune Municipal Corporation (PMC) had proposed to drain out the lake and constructing an educational complex in its place.
+1
+Section 1: About the study area
+However, this was opposed by residents who lived around the lake. Following this, Dr Meera Bondre of the Botany Department of Poona University (now Savitribai Phule Pune University) undertook a detailed study of the lake and found that it supports a well-balanced ecosystem and is abound in diverse life forms. The lake has a species of fish known as Gambusia affinis, also called mosquito larvae eaters, which help keep the nearby area free of mosquitoes and control the pollution levels in the air surrounding it. They also prevent the lake from emitting a pungent odour.
+Ornithologist Salim Ali also visited the lake and expressed surprise at the number of birds that frequented the spot, despite it being in the middle of a residential colony. Some of the birds seen here include storks, bulbuls, ducks, and cranes.
+Efforts to develop the lake started in 1993 and were finally completed by 2001. Lakaki Lake, geographically situated at latitude 18°31'52.5"N and longitude 73°50'18.2"E within Model Colony, Shivaji Nagar, Pune, Maharashtra, has a unique urban history.
+Physical Dimensions & Project Focus Area:
+
+Total Surface Area of Lake: Approximately 2.35 hectares
+Catchment Boundary: 14.8 hectares encompassing commercial buildings, asphalt roads, and Model Colony residential layouts.
+Average Depth: 2.8 meters to 4.2 meters (varies seasonally).
+Elevation: ~558 meters above Mean Sea Level (MSL).
+Figure 2: Dimensions & Spatial Layout Plan View
+Figure 2: Dimensions of Lakaki Lake location context view.
+4
+1.2 Problem Statements
+1.2 Problem Statements
+As a result of its location in an active urban committee zone, Lakaki Lake is subjected to heavy anthropogenic pressure. Rapid urban consolidation surrounding Model Colony has altered the natural hydrology and ecological equilibrium of the lake through four major pollution vectors:
+Spread and increment of Invasive Water Lettuce (Pistia stratiotes): Elevated nutrient concentration (eutrophication) combined with slow hydraulic turnover has created optimal conditions for invasive alien macrophytes. In addition to Water Hyacinth (Eichhornia crassipes), the lake is severely infested with Water Lettuce (Pistia stratiotes). Water Lettuce forms thick, interconnected floating mats across shallow shoreline bays, blocking light penetration, reducing photosynthetically active radiation for submerged flora, and driving severe dissolved oxygen depletion (DO < 2.0 mg/L).
+The anthropogenic pressure: As Lakaki lake is surrounded by the urban buildups, it faces a severe ecological degradation due to anthropogenic pressure, including polluted run offs, heavy human activities change throughout this time span, these changes affect the water quality, vegetation index which indirectly or directly affect the biodiversity of the areas.
+Human dumping of wastes, and feeding the organisms: We saw wastes such as the flower necklaces, leaves, plastic bottles etc., in the water and we also saw the residents living nearby feeding the organisms of the lake, its restricted but still going on illegally, which in turn pollutes the water and makes it difficult for the organisms.
+The self-made stone wall with nets to prevent erosion: The nets were creating problems for the ducks and other organisms because their feet get stuck there and they are struggling and are getting injured.
+Figure 3: Water lettuce restoration processing abstraction mapping.
+5
+1.3 Sustainable Development Goal 6 (SDG 6)
+
+
+
+Figure 4: The stone wall mesh layout configuration details.
+1.3 Sustainable Development Goal 6 (SDG 6)
+Our primary focus aligns directly with United Nations Sustainable Development Goal 6: Clean Water and Sanitation.
+Securing SDG 6 in the Lakaki Lake Region: To achieve clean water and sanitation in this urban wetland, integrated geospatial modelling (NDWI, NDVI, NDBI, NDRE) is used to pinpoint exact pollution entry points and weed choking zones. By eliminating untreated wastewater inflows, and executing mechanical weed harvesting, Pune Municipal Corporation can restore water clarity, prevent toxic cyanobacterial blooms, and secure a clean, bio-diverse urban water sanctuary for the public.
+
+Sustainable Development Goal
+	Target Details
+	Project Alignment & Technical Output
+SDG 6: Clean Water and Sanitation
+	Target 6.6: By 2020, protect and restore water-related ecosystems, including mountains, forests, wetlands, rivers, aquifers and lakes.
+	Using multi-spectral indices (NDWI, NDVI, NDBI, NDRE) to diagnose anthropogenic pollution, and establish a clean water restoration framework for PMC.
+SDG 6: Clean Water and Sanitation
+	Target 6.3: Improve water quality by reducing pollution, eliminating dumping, and minimizing release of hazardous chemicals.
+	Mapping sewage outfalls and proposing natural bio-swales and gravel filters to prevent urban greywater from degrading Lakaki Lake water quality.
+
+Table 1: Sustainable Development Goal Linkage with the project.
+6
+Section 2: Research Questions & Objectives
+Section 2: Research Questions
+2.1 Core Research Questions (RQs)
+This research addresses two core questions imperative for diagnosing and restoring Lakaki Lake:
+
+Research Question 1 (Anthropogenic Pressure & Organism Impact): How have urban expansion and land use changes around Lakaki lake impacted its water quality and the overall ecological balance?
+Research Question 2 (Decadal Comparison 2016, 2021, 2026): How do satellite-derived NDWI (water extent) and NDVI (vegetation density) indices compare across decades and what do these temporal trends reveal regarding vegetation health and water quality degradation over the past decade and to understand how much and at what rate the changes took places over a decade?
+2.2 Project Objectives
+
+To execute primary field sampling using Epicollect5 mobile GIS.
+To process multi-spectral satellite imagery (Sentinel-2 / Landsat) for 2016, 2021, and 2026 to derive NDBI, NDRE, NDVI, and NDWI indices.
+To visualize all field sampling points and satellite raster in ArcGIS and perform spatial zonal statistics.
+To quantify the decadal shift in open water area versus invasive weed coverage (Water Lettuce / Water Hyacinth).
+To formulate an actionable restoration plan and municipal policy brief for the Pune Municipal Corporation (PMC).
+
+4
+Section 3: Methodology & Technical Workflow
+Section 3: Methodology & Technical Workflow
+Figure 5: Technical GIS Workflow Layout
+Figure 5: Detailed flow-chart of the methodological process which was followed in this project.
+3.1 Mobile GIS Field Survey & Biological Data Collection
+Primary field data collection was conducted using Epicollect5 to map solid waste dumping sites, shoreline typologies, and capture high-resolution records of aquatic fauna distribution conditions across tracking boundaries.
+5
+3.2 Multi-Spectral Satellite Image Processing
+3.2 Multi-Spectral Satellite Image Processing (NDVI, NDWI, NDBI & NDRE)
+Satellite remote sensing imagery for 2016, 2021, and 2026 was downloaded and pre-processed in ArcGIS. Four key spectral indices were computed to prove anthropogenic pressure and track ecological health:
+
+Spectral Index
+	Bands Used
+	Formula / Algebraic Expression
+	Ecological Purpose in Study
+NDVI
+(Vegetation Index)
+	NIR (B8) & Red (B4)
+	NDVI = (NIR - Red) / (NIR + Red)
+	Maps density and spread of invasive Water Lettuce and Water Hyacinth mats across 2016, 2021, 2026.
+NDWI
+(Water Index)
+	Green (B3) & NIR (B8)
+	NDWI = (Green - NIR) / (Green + NIR)
+	Tracks changes in the open water extent and clarity throughout these study years.
+NDBI
+(Built-up Index)
+	SWIR (B11) & NIR (B8)
+	NDBI = (SWIR - NIR) / (SWIR + NIR)
+	Proves catchment anthropogenic pressure by mapping built-up surface density around the lake.
+NDRE
+(Red Edge Index)
+	NIR (B6) & Red Edge (B5)
+	NDRE = (B6 - B5) / (B6 + B5)
+	Measures macrophyte chlorophyll content and physiological stress caused by sewage inflows.
+
+Table 2: Indices, bands, formulas and purpose used for Image Processing.
+3.3 ArcGIS Data Visualization & Zonal Statistics
+All GNSS points collected via Epicollect5 were imported into ArcGIS, projected into WGS 84 / UTM Zone 43N, and overlaid on high-resolution base maps to validate distribution statistics.

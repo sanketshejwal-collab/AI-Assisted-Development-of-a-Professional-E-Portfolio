@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 8: Landscape Diagnostics of Mulshi</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --text-color: #1f2937;
+            --bg-color: #f9fafb;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: right;
+            color: #6b7280;
+            font-size: 0.875rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f3f4f6;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .metadata-table td:first-child {
+            font-weight: bold;
+            width: 25%;
+            background-color: #f9fafb;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .note {
+            font-style: italic;
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-top: 4px;
+        }
+
+        .chart-placeholder {
+            background: #f3f4f6;
+            border: 2px dashed #d1d5db;
+            border-radius: 6px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .formula-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .formula {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .page-footer {
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">Practical 8: Field Techniques-I</div>
+
+    <h1>Format for Submission Sheet (Practical 8)</h1>
+    <p>Go through the task sheet and perform all the exercises mentioned in the task sheet. <em>(Do not remove the heading or Questions in the Submission sheet)</em></p>
+
+    <table class="metadata-table">
+        <tr>
+            <td>Group number</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Names and Roll numbers</td>
+            <td>Sanket Shejwal-2613, Anusha Layek-2614, Amisha Sahay-2618, Vansh Naik-2619</td>
+        </tr>
+        <tr>
+            <td>Stream</td>
+            <td>Geoinformatics</td>
+        </tr>
+        <tr>
+            <td>Practical Title</td>
+            <td>Practical 8: Landscape Diagnostics of Mulshi — Integrating Forest Cover, Waterbodies, and Anthropogenic Footprints</td>
+        </tr>
+    </table>
+
+    <h2>Task 1: Comprehensive Baseline Cartographic Layout</h2>
+    <h3>Importance of Baseline Cartographic Layout:</h3>
+    <ul>
+        <li>To standardize spatial data presentation so maps are instantly clear, accurate, and actionable for decision-makers.</li>
+        <li>To have a strong visual hierarchy—map canvas, clear title, scale bar, north arrow, legend, graticule/grid, and basic metadata.</li>
+        <li>Ensures technical accuracy, enables reproducibility across reports, and bridges the gap between complex GIS analysis and stakeholder understanding.</li>
+    </ul>
+
+    <h3>Key Learnings:</h3>
+    <ul>
+        <li><strong>Visual Balance:</strong> Dominant thematic features (e.g., pressure points) stand out; background basemaps stay muted.</li>
+        <li><strong>Intuitive Color Scheme:</strong> Hot colors for impact/risk, cool colors for natural features like water.</li>
+    </ul>
+
+    <div class="chart-placeholder">
+        [ Map Visualization: NDVI OF LINE TRANSECT IN MULSHI ]
+    </div>
+    <p class="note"><strong>Explanation:</strong> NDVI map showing vegetation density along a line transect in the Mulshi region. The main map on the left uses green gradients to highlight variations in canopy cover—darker green for dense vegetation and lighter shades for sparser growth—while the three inset panels on the right zoom in on specific highlighted sampling zones along the transect.</p>
+
+    <h2>Task 2: Forest Cover Assessment and NDVI Comparison</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Object*</th>
+                <th>Average (DBH)</th>
+                <th>Average Canopy Cover (%)</th>
+                <th>Min NDVI</th>
+                <th>Max NDVI</th>
+                <th>AVG NDVI</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Line 1</td>
+                <td>133 cm</td>
+                <td>75%</td>
+                <td>0.52</td>
+                <td>0.78</td>
+                <td>0.68</td>
+            </tr>
+            <tr>
+                <td>Line 2</td>
+                <td>146 cm</td>
+                <td>82%</td>
+                <td>0.58</td>
+                <td>0.84</td>
+                <td>0.74</td>
+            </tr>
+            <tr>
+                <td>Line 3</td>
+                <td>110 cm</td>
+                <td>68%</td>
+                <td>0.45</td>
+                <td>0.72</td>
+                <td>0.61</td>
+            </tr>
+            <tr>
+                <td>Line 4</td>
+                <td>90 cm</td>
+                <td>58%</td>
+                <td>0.38</td>
+                <td>0.65</td>
+                <td>0.52</td>
+            </tr>
+            <tr>
+                <td>Line 5</td>
+                <td>78 cm</td>
+                <td>52%</td>
+                <td>0.32</td>
+                <td>0.58</td>
+                <td>0.46</td>
+            </tr>
+            <tr>
+                <td>Line 6</td>
+                <td>35 cm</td>
+                <td>40%</td>
+                <td>0.21</td>
+                <td>0.49</td>
+                <td>0.35</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="note">*This is an example you may need row wise more entry.</div>
+
+    <h2>Task 3: Catchment Ecosystem Services Profiling & Remote Sensing Synthesis</h2>
+    <div class="chart-placeholder">
+        [ Distribution Chart: Proportional breakdown of ecosystem service categories identified across Mulshi study perimeter ]
+        <br><small>Regulating: 37.04% | Supporting: 31.48% | Cultural: 16.67% | Provisioning: 14.81%</small>
+    </div>
+    <p>The top 3 ecosystem services are: 1. Regulating services, 2. supporting services, 3. cultural services.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Landscape Component</th>
+                <th>Ecosystem Service</th>
+                <th>Remote Sensing Indicator & Method</th>
+                <th>Reference (APA Format)</th>
+                <th>Key Findings & Relevance to Mulshi Catchment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>e.g., Waterbody</td>
+                <td>Regulating (Water Storage)</td>
+                <td>Multi-temporal surface water tracking via GEE index thresholds</td>
+                <td>Weekley & Li (2019), Water Resources Research</td>
+                <td>Demonstrates tracking multi-decadal water dynamics for gauged and ungauged reservoirs.</td>
+            </tr>
+            <tr>
+                <td>Soil Quality</td>
+                <td>Supporting / Regulating (Nutrient Cycling & Soil Retention)</td>
+                <td>Mapping soil organic carbon (SOC) and erosion susceptibility using Sentinel-2/Landsat spectral indices (NDVI, Bare Soil Index) combined with digital elevation models (DEM)</td>
+                <td>Bünemann, E. K., et al. (2018). Soil quality – A critical review. Soil Biology and Biochemistry, 120, 105–125.</td>
+                <td>Evaluates biological, chemical, and physical soil quality indicators. Critical for assessing topsoil degradation, soil organic matter loss, and erosion risk along the steep terrain and agricultural slopes.</td>
+            </tr>
+            <tr>
+                <td>Tourism and Recreational</td>
+                <td>Cultural (Ecotourism & Aesthetic Value)</td>
+                <td>Land Use/Land Cover (LULC) change detection and viewshed/fragmentation mapping using high-resolution optical imagery (Sentinel-2)</td>

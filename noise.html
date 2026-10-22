@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noise Pollution Survey — Suvarnayug Nagar</title>
+    <style>
+        :root {
+            --primary-color: #1e293b;
+            --accent-color: #0f766e;
+            --text-main: #334155;
+            --text-dark: #0f172a;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            
+            /* Status Colors */
+            --color-very-safe: #16a34a;
+            --color-safe: #65a30d;
+            --color-moderate: #d97706;
+            --color-harmful: #dc2626;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-page);
+            margin: 0;
+            padding: 24px;
+        }
+
+        .report-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .report-header {
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 20px;
+            margin-bottom: 32px;
+        }
+
+        .report-header h1 {
+            color: var(--text-dark);
+            font-size: 2.25rem;
+            margin: 0 0 8px 0;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .report-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        h2 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+        }
+
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.15rem;
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Classification Grid Rules */
+        .classification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .class-card {
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .class-card.very-safe { background-color: #f0fdf4; color: var(--color-very-safe); border-color: #bbf7d0; }
+        .class-card.safe { background-color: #f7fee7; color: var(--color-safe); border-color: #d9f99d; }
+        .class-card.moderate { background-color: #fffbeb; color: var(--color-moderate); border-color: #fde68a; }
+        .class-card.harmful { background-color: #fef2f2; color: var(--color-harmful); border-color: #fecaca; }
+
+        /* Tables styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.92rem;
+        }
+
+        th, td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge.harmful { background-color: #fee2e2; color: #991b1b; }
+        .badge.moderate { background-color: #fef3c7; color: #92400e; }
+        .badge.safe { background-color: #ecfccb; color: #3f6212; }
+        .badge.very-safe { background-color: #dcfce7; color: #166534; }
+
+        .summary-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .formula-list code {
+            font-family: Consolas, Monaco, monospace;
+            background-color: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .report-container { padding: 20px; }
+            table { font-size: 0.8rem; display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="report-container">
+    <header class="report-header">
+        <h1>Fieldwork Report: Environmental Noise Spatial Analysis</h1>
+        <p>Location Perimeter: Suvarnayug Nagar, Pune, India</p>
+    </header>
+
+    <h2>1. Research Question</h2>
+    <p>What is the distribution pattern of decibels in various urban land-use zones in Suvarnayug Nagar, Pune and what is the impact of ambient noise pollution on sensitive community features?</p>
+    <p>Urban noise pollution is an increasingly serious environmental hazard which has a direct adverse effect on physiological and psychological health. By determining the decibel levels of various commercial nodes, transit areas, residential streets, and educational institutions, the study attempts to identify potential hotspots of sound pressure and ascertain if buffer zones protect sensitive sites from acoustic overexposure.</p>
+
+    <h2>2. Methodology</h2>
+    <p>Data collection and geographic processing was carried out through a mobile-desktop GIS workflow:</p>
+    <ul>
+        <li><strong>Field Data Collection:</strong> The field surveys were uploaded to the EpiCollect5 mobile data collection platform. A survey form was created containing fields for the sequential point number, exact geographic location (Latitude/Longitude via mobile GPS), local timestamp, site description, and the decibel reading. The decibel values were recorded using a digital sound level meter application to capture on-site peak and ambient noise levels.</li>
+        <li><strong>Sampling Distribution:</strong> A total number of 23 distinct sampling sites were evaluated between October 7 and October 12, 2026, representing a mixture of daytime mid-day and late-night peaks (e.g., late-night metrics in Surya Chowk and Akshay Heights).</li>
+        <li><strong>GIS Spatial Analysis & Visualisation:</strong> The collected shapefiles were imported as an XY Table-to-Point feature layer into the desktop GIS environment. A 50-meter proximity buffer zone was created around the point vectors to represent sound dispersion extents.</li>
+    </ul>
+
+    <h3>Symbology Graduated Classification Scheme</h3>
+    <div class="classification-grid">
+        <div class="class-card very-safe">42 – 50 dB<br><span style="font-size: 0.85rem; font-weight: normal;">Very Safe</span></div>
+        <div class="class-card safe">51 – 60 dB<br><span style="font-size: 0.85rem; font-weight: normal;">Safe</span></div>
+        <div class="class-card moderate">61 – 90 dB<br><span style="font-size: 0.85rem; font-weight: normal;">Moderate</span></div>
+        <div class="class-card harmful">91 – 102 dB<br><span style="font-size: 0.85rem; font-weight: normal;">Harmful</span></div>
+    </div>
+
+    <h2>3. Spatial Distribution and Frequency Anomalies</h2>
+    <p>The data provided exhibits a clear bimodal spatial distribution pattern, with the area of study split between an intensive southern/eastern high-noise corridor and a more protected central-north valley. </p>
+    <p>Meanwhile, the frequency distribution reflects that the <strong>Harmful</strong> category accounts for the majority of the field area, comprising 11 singular locations. In turn, Moderate category places totaled 6, while Safe and Very Safe ones reached the lowest occurrences with 3 catches per group.</p>
+
+    <h3>High-Noise Clusters (The Hotspots)</h3>
+    <p>The hotspots of extreme spatial clusters cross major road intersections and transit hubs. Bus Stop at Om Shiv Shambho Heights (100 dB), Sawarkar Chowk (91 dB), and Sai Siddhi Chowk (97 dB) are severely impacted by traffic congestion and continuous honking. </p>
+    <p>Surprisingly, noise pollution penetrated deep into the community layout; the Mahadev Mandir site (102 dB) reported the maximum decibels outdoor due to regular loudspeakers and crowd convergence. Institutional boundaries offered minimal isolation: Spandan Clinic registered at 99 dB and the point Near Prerana High School hit 99 dB.</p>
+
+    <h3>Low-Noise Islands (The Enclaves)</h3>
+    <p>In contrast, low-noise islands are confined to a small interior pocket. Shri Vamanrao Oturkar High School (48 dB) and Hope Care Center & Old Age Home (46 dB) are located at a distance from the main commercial roads, offering substantial noise isolation provided by surrounding residential blocks. The low register of Aniket Khopade Photography (42 dB) indicates that internal courtyard development configurations can offer robust acoustic insulation from city noise.</p>
+
+    <h2>4. Personal Reflection & Scale Selection</h2>
